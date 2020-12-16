@@ -27,6 +27,7 @@
     --br: 1rem;
 
     --spacer: 1rem;
+    --letter-spacer: 2px;
 
     --break-point: 37.5em;
 }
@@ -104,59 +105,93 @@ body {
 /* utility */
 
 .flow-content > * + * {
-    margin-top: var(--flow-spacer, 1em);
+  margin-top: var(--flow-spacer, 1em);
+}
+
+.letter-spacer {
+  letter-spacing: 2px;
 }
 
 .split {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 37.5em) {
-    .split {
-      flex-direction: row;
-    }
-  
-    .split > * + * {
-      margin: 0 0 0 2.5rem;
-    }
+  .split {
+    flex-direction: row;
+  }
 }
 
 /* typeography */
 
 h2 {
-    font-size: var(--fs-600);
-    font-weight: var(--fw-700);
-    color: var(--clr-primary-300);
-    letter-spacing: 2px;
+  font-size: var(--fs-600);
+  font-weight: var(--fw-700);
+  letter-spacing: var(--ls, --letter-spacer);
+  color: var(--clr-primary-300);
 }
 
 p {
     font-family: var(--ff-pt);
 }
 
+span {
+  letter-spacing: var(--ls, --letter-spacer);
+  display: block;
+}
+
 .number {
-    font-size: var(--fs-600);
-    font-weight: var(--fw-700);
+  font-size: var(--fs-600);
+  font-weight: var(--fw-700);
 }
 
 /* layout */
 
 .card {
-    background-color: var(--clr-primary-400);
-    outline: 1px solid red;
-}
-
-.card__image {
-    flex-basis: 100%;
-    object-fit: cover;
-    object-position: center center;
+  background-color: var(--clr-primary-400);
 }
 
 .card__content {
-    padding: 2em;
+  --ls: 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  width: 100%;
+  max-width: 37.5rem;
 }
 
 .card__content > * + * {
-    margin-top: 2em;
+  margin-top: 2em;
+}
+
+.card__footer {
+  --ls: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;  
+}
+
+@media (min-width: 37.5em) {
+  .card__footer {
+    margin-top: auto;
+  }
+}
+
+/* components */
+
+.card__image {
+  flex-basis: 150px;    
+  object-fit: cover;
+  object-position: center center;
+}
+
+.btn {
+  text-decoration: none;
+  text-transform: lowercase;
+  letter-spacing: var(--ls, --letter-spacer);
+  font-weight: var(--fw-700);
+  background-color: var(--clr-primary-300);
+  color: var(--clr-primary-400);
+  padding: .75em 2em;
 }
