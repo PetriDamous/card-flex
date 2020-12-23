@@ -23,6 +23,8 @@
   
     --clr-primary-300: #05CBE9;
     --clr-primary-400: #111D4A;
+
+    --clr-accent-400: #00FF7F;
   
     --br: 1rem;
 
@@ -123,13 +125,39 @@ body {
   }
 }
 
+.bg-dark {
+  --h2-clr: var(--clr-accent-400);
+  --btn-fg: var(--clr-neutral-900);
+  --btn-bg: var(--clr-neutral-100);
+  --card-bg: var(--clr-neutral-900);
+  color: var(--clr-neutral-100);
+}
+
+.bg-light {
+  --h2-clr: var(--clr-neutral-500);
+  --btn-fg: var(--clr-neutral-100);
+  --btn-bg: var(--clr-neutral-900);
+  --card-bg: var(--clr-neutral-200);
+  color: var(--clr-neutral-900);
+  --img-border: 1px solid var(--clr-neutral-900);
+  border: 1px solid var(--clr-neutral-900);  
+}
+
+.bg-default {
+  --h2-clr: var(--clr-primary-300);
+  --btn-fg: var(--clr-primary-400);
+  --btn-bg: var(--clr-primary-300);
+  background-color: var(--clr-primary-400);
+  color: var(--clr-neutral-300);
+}
+
 /* typeography */
 
 h2 {
   font-size: var(--fs-600);
   font-weight: var(--fw-700);
   letter-spacing: var(--ls, --letter-spacer);
-  color: var(--clr-primary-300);
+  color: var(--h2-clr, var(--clr-primary-300));
 }
 
 p {
@@ -149,7 +177,7 @@ span {
 /* layout */
 
 .card {
-  background-color: var(--clr-primary-400);
+  background-color: var(--card-bg, var(--clr-primary-400));
 }
 
 .card__content {
@@ -157,7 +185,6 @@ span {
   display: flex;
   flex-direction: column;
   padding: 2em;
-  width: 100%;
   max-width: 37.5rem;
 }
 
@@ -184,6 +211,14 @@ span {
   flex-basis: 150px;    
   object-fit: cover;
   object-position: center center;
+  border-bottom: var(--img-border);
+}
+
+@media (min-width: 37.5em) {
+  .card__image {
+    border-bottom: none;
+    border-right: var(--img-border);
+  }
 }
 
 .btn {
@@ -191,7 +226,7 @@ span {
   text-transform: lowercase;
   letter-spacing: var(--ls, --letter-spacer);
   font-weight: var(--fw-700);
-  background-color: var(--clr-primary-300);
-  color: var(--clr-primary-400);
+  background-color: var(--btn-bg, var(--clr-primary-300));
+  color: var(--btn-fg, var(--clr-primary-400));
   padding: .75em 2em;
 }
